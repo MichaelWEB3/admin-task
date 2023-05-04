@@ -1,75 +1,50 @@
-import React, { useRef, useState, useEffect } from "react";
-import * as tf from "@tensorflow/tfjs";
-import * as tfd from "@tensorflow/tfjs-data";
-import * as tfo from "@tensorflow/tfjs-core";
-import * as cocossd from "@tensorflow-models/coco-ssd";
-import Webcam from "react-webcam";
-import glassesImg from "../../img/glass.jpg";
+import React, { useEffect, useRef } from 'react';
+import { Canvas } from 'react-three-fiber';
+import { ARButton } from 'three/examples/jsm/webxr/ARButton';
+import * as THREE from 'three';
+import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
 
-const App = () => {
-  const webcamRef = useRef(null);
-  const [model, setModel] = useState(null);
-  const [glasses, setGlasses] = useState(null);
-  const [detections, setDetections] = useState([]);
+const IndexPage = () => {
+  const arButtonContainer = useRef(null);
+  const sceneRef = useRef(null);
 
   useEffect(() => {
-    const loadModel = async () => {
-      const model = await cocossd.load();
-      setModel(model);
-    };
+    if (arButtonContainer.current) {
+      const arButton = ARButton.createButton(new THREE.WebGLRenderer(), {
+        requiredFeatures: ['hit-test'],
+      });
 
-    loadModel();
-  }, []);
-
-  useEffect(() => {
-    const loadImage = async () => {
-      const img = new Image();
-      img.src = glassesImg
-      setGlasses(img);
-    };
-
-    loadImage();
-  }, []);
-
-  const detectObjects = async () => {
-    const image = tfd?.browser?.fromPixels(webcamRef.current.video);
-    const predictions = await model?.detect(image);
-    setDetections(predictions);
-    tfo.dispose(image);
-  };
-
-  useEffect(() => {
-    if (webcamRef.current && model) {
-      setInterval(() => {
-        detectObjects();
-      }, 100);
+      arButtonContainer.current.appendChild(arButton);
     }
-  }, [webcamRef, model]);
+  }, []);
 
-  const drawDetections = () => {
-    const canvas = document.getElementById("canvas");
-    const ctx = canvas.getContext("2d");
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    detections.forEach((prediction) => {
-      const [x, y, width, height] = prediction.bbox;
-      const glassesWidth = width * 1.5;
-      const glassesHeight = glassesWidth * 0.3;
-      const glassesX = x + width / 2 - glassesWidth / 2;
-      const glassesY = y + height * 0.6 - glassesHeight / 2;
-      ctx.drawImage(glasses, glassesX, glassesY, glassesWidth, glassesHeight);
-    });
+  const onLoad = (gltf) => {
+    const { scene } = gltf;
+    scene.scale.set(0.1, 0.1, 0.1);
+    scene.position.set(0, -0.5, -1.5);
+    scene.rotation.y = Math.PI;
+
+    if (sceneRef.current) {
+      sceneRef.current.add(scene);
+    }
   };
 
-  useEffect(() => {
-    drawDetections();
-  }, [detections]);
+  const gltfLoader = new GLTFLoader();
+  gltfLoader.load('glasses.glb', onLoad);
 
   return (
-    <>
-      <Webcam ref={webcamRef} />
-      <canvas id="canvas" width={640} height={480} />
-    </>
+    <div className="container">
+      <div className="ar-button-container" ref={arButtonContainer}></div>
+      <Canvas
+        onCreated={({ gl, scene }) => {
+          scene.background = null;
+          gl.xr.enabled = true;
+          gl.setClearColor(0xffffff, 0);
+          sceneRef.current = scene;
+        }}
+      />
+    </div>
   );
 };
 
-export default App;
+export default IndexPage;

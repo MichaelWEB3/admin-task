@@ -1,12 +1,12 @@
-import React, { useEffect, useRef } from 'react';
+import { useEffect, useRef } from 'react';
 import { Canvas } from 'react-three-fiber';
 import { ARButton } from 'three/examples/jsm/webxr/ARButton';
 import * as THREE from 'three';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
 
-const IndexPage = () => {
-  const arButtonContainer = useRef(null);
-  const sceneRef = useRef(null);
+export default function Home() {
+  const arButtonContainer = useRef();
+  const sceneRef = useRef();
 
   useEffect(() => {
     if (arButtonContainer.current) {
@@ -30,11 +30,11 @@ const IndexPage = () => {
   };
 
   const gltfLoader = new GLTFLoader();
-  gltfLoader.load('glasses.glb', onLoad);
+  gltfLoader.load('/glasses.glb', onLoad);
 
   return (
-    <div className="container">
-      <div className="ar-button-container" ref={arButtonContainer}></div>
+    <div className={"container"}>
+      <div className={"arButtonContainer"} ref={arButtonContainer}></div>
       <Canvas
         onCreated={({ gl, scene }) => {
           scene.background = null;
@@ -45,6 +45,4 @@ const IndexPage = () => {
       />
     </div>
   );
-};
-
-export default IndexPage;
+}

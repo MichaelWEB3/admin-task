@@ -5,7 +5,7 @@ export default function Menu({ propSelect }) {
   const [seleck, setseleck] = useState("home");
   useEffect(() => {
     if (propSelect) setseleck(propSelect);
-  }, []);
+  }, [propSelect]);
   return (
     <nav className="w-full bg-gray-700 h-20 text-gray-50     font-medium  p-5">
       <ul className="w-full  flex  justify-around  items-center h-full ">
@@ -48,7 +48,7 @@ export default function Menu({ propSelect }) {
             ${seleck == "projectsinfo" && "border-b border-gray-50"} 
             cursor-pointer hover:text-lg transition  duration-300`}
           >
-           Director's Assignments
+           Directors Assignments
           </span>
         </li>
 

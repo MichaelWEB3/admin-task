@@ -16,15 +16,7 @@
   }
 }
 
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
-}
+body {}
 
 .container {
   display: flex;
@@ -32,10 +24,58 @@ body {
   align-items: center;
   justify-content: center;
   height: 100vh;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 
 .arButtonContainer {
   position: absolute;
   top: 10px;
   right: 10px;
+}
+
+.mymsg {
+  position: relative;
+  right: 0;
+}
+
+.scrollDiv {
+  overflow: hidden;
+  overflow-y: scroll;
+  scrollbar-width: none;
+  height: 100vh;
+
+}
+.textmeno {
+  font-size: 0.7rem;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th,
+td {
+  padding: 8px;
+  border: 1px solid #ddd;
+}
+
+tbody {
+  overflow-y: auto;
+}
+
+.thead-fixed th {
+  position: sticky;
+  top: 0;
+  background-color: #1F2937;
+}
+
+/* Estilos para o corpo da tabela */
+.tbody-scroll {
+  height: 200px;
+  overflow-y: auto;
+}
+
+.textmeno {
+  font-size: 0.6rem;
 }

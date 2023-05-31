@@ -105,11 +105,6 @@ export default function Home() {
                   <span>Notes</span>
                 </div>
               </th>
-              <th scope="col" className="py-1 px-1">
-                <div className="w-full flex justify-start items-center">
-                  <span>Sum</span>
-                </div>
-              </th>
             </tr>
           </thead>
 

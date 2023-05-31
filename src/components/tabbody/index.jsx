@@ -30,51 +30,7 @@ export default function TabBody({
         });
     }
   };
-  function sumRDireto(
-    DPendingDirecot,
-    ModelsPendingDirecot,
-    AnimPendingDirecot,
-    AEPendingDirecot,
-    RotoPendingDirecot,
-    CompPendingDirecot
-  ) {
-    let sum =
-      Number(DPendingDirecot == "Pending" ? 0 : DPendingDirecot) +
-      Number(ModelsPendingDirecot == "Pending" ? 0 : ModelsPendingDirecot) +
-      Number(AnimPendingDirecot == "Pending" ? 0 : AnimPendingDirecot) +
-      Number(AEPendingDirecot == "Pending" ? 0 : AEPendingDirecot) +
-      Number(RotoPendingDirecot == "Pending" ? 0 : RotoPendingDirecot) +
-      Number(CompPendingDirecot == "Pending" ? 0 : CompPendingDirecot);
 
-    return sum;
-  }
-  function sumRNew(
-    DNewDirecot,
-    ModelsNewDirecot,
-    AnimNewDirecotl,
-    AENewDirecot,
-    RotoNewDirecot,
-    DemoPendingDirecot,
-    CompNewDirecot
-  ) {}
-  function sumRDesin(
-    DPendingDesigner,
-    ModelsPendingDesigner,
-    AnimPendingDesigner,
-    AEPendingDesigner,
-    RotoPendingDesigner,
-    DemoPendingDesigner,
-    CompPendingDesigner
-  ) {}
-  function sumRDesin(
-    DNewDesigner,
-    ModelsNewDesigner,
-    AnimNewDesigner,
-    AENewDesigner,
-    RotoNewDesigner,
-    DemoNewDesigner,
-    CompNewDesigner
-  ) {}
   return (
     <tr
       onClick={() => {
@@ -87,7 +43,6 @@ export default function TabBody({
           <span className="text-green-400"> {movie?.Product}</span>
         </div>
       </th>
-
       <td className="py-1 px-1">{r.nome}</td>
       <td className="py-1 px-1">
         <div className="mr-5   text-green-400">
@@ -101,7 +56,6 @@ export default function TabBody({
             })}
         </div>
       </td>
-
       <td className="py-1 px-1">
         <div className="   text-green-400">
           {r.Designer &&
@@ -141,7 +95,6 @@ export default function TabBody({
           )}
         </div>
       </td>
-
       <td className="py- px-1">
         <div className="flex flex-col ">
           <div className="flex flex-row  ">
@@ -176,7 +129,6 @@ export default function TabBody({
           )}
         </div>
       </td>
-
       <td className="py-1 px-1">
         <div className="flex flex-col ">
           <div className="flex flex-row ">
@@ -388,47 +340,6 @@ export default function TabBody({
           <span className=" text-gray-100 p-1">
             {r?.noteDirecot} {!r?.noteDirecot && "-"}{" "}
           </span>
-        </div>
-      </td>
-      <td className="py-1 px-1">
-        <div className="flex flex-col ">
-          <div className="flex flex-row ">
-            <span className=" w-8">.</span> / R / N
-          </div>
-          {r?.DemoPendingDesigner && (
-            <div className="flex  items-center    ">
-              <span className=" mr-1">DES</span>
-              <span className=" text-blue-400  p-1 m-1">
-                {r?.DemoPendingDesigner}{" "}
-              </span>
-              <span className="m-1">-</span>
-
-              <span className=" text-red-500  p-1 m-1">
-                {" "}
-                {r?.DemoNewDesigner}
-              </span>
-            </div>
-          )}
-          {r?.DemoPendingDirecot && (
-            <div className="flex   items-center    ">
-              <span className="mr-1">DIR </span>
-              <span className=" text-gray-100 p-1 m-1">
-                {sumRDireto(
-                  r?.DPendingDirecot,
-                  r?.ModelsPendingDirecot,
-                  r?.AnimPendingDirecot,
-                  r?.AEPendingDirecot,
-                  r?.RotoPendingDirecot,
-                  r?.CompPendingDirecot
-                )}
-              </span>
-              <span className="m-1">-</span>
-              <span className=" text-red-500 p-1 m-1">
-                {" "}
-                {r?.DemoNewDirecot}
-              </span>
-            </div>
-          )}
         </div>
       </td>
     </tr>

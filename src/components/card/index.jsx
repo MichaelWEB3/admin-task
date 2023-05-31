@@ -21,14 +21,29 @@ export default function Card({ users }) {
         },
       })
       .then((resp) => {
-        setmeusProjects(resp.data.dates);
+        setmeusProjects(removerDuplicados(resp.data.dates));
       })
       .catch((e) => {
         alert("error requisition");
       });
   };
+  function removerDuplicados(array) {
+    const objetosUnicos = [];
+    const rastreador = {};
+    for (let i = 0; i < array.length; i++) {
+      const objeto = array[i];
+      const chave = objeto.uidMovie;
+
+      if (!rastreador[chave]) {
+        rastreador[chave] = true;
+        objetosUnicos.push(objeto);
+      }
+    }
+    return objetosUnicos;
+  }
+
   return (
-    <div className="border border-gray-800 rounded p-5 flex flex-col ">
+    <div className="border border-gray-800 rounded  flex flex-col ">
       <span className="font-bold uppercase">{users.name}</span>
       <ul>
         {meusProjects?.map((r, i) => {

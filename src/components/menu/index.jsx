@@ -48,10 +48,23 @@ export default function Menu({ propSelect }) {
             ${seleck == "projectsinfo" && "border-b border-gray-50"} 
             cursor-pointer hover:text-lg transition  duration-300`}
           >
-           Directors Assignments
+            Directors Assignments
           </span>
         </li>
-
+        <li className="w-1/12">
+          <span
+            onClick={() => {
+              setseleck("users");
+              Router.push("/users");
+            }}
+            cla
+            className={`
+            ${seleck == "users" && "border-b border-gray-50"} 
+            cursor-pointer hover:text-lg transition  duration-300`}
+          >
+            Users
+          </span>
+        </li>
         <li className="w-5/12 flex  justify-end">
           <span className=" cursor-pointer hover:text-lg transition  duration-300">
             {" "}

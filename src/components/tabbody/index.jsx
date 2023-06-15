@@ -71,7 +71,6 @@ export default function TabBody({
       <td className="py-1 px-1 ">
         <div className="flex-col   ">
           <div className="flex flex-row ">
-            <span className=" w-8">.</span> / R / N
           </div>
           {r?.DPendingDesigner && (
             <div className="flex items-center   ">
@@ -97,9 +96,7 @@ export default function TabBody({
       </td>
       <td className="py- px-1">
         <div className="flex flex-col ">
-          <div className="flex flex-row  ">
-            <span className=" w-8">.</span> / R / N
-          </div>
+         
           {r?.ModelsPendingDesigner && (
             <div className="flex items-center     ">
               <span className=" mr-1">DES</span>
@@ -132,7 +129,6 @@ export default function TabBody({
       <td className="py-1 px-1">
         <div className="flex flex-col ">
           <div className="flex flex-row ">
-            <span className=" w-8">.</span> / R / N
           </div>
           {r?.AnimPendingDesigner && (
             <div className="flex items-center    ">
@@ -167,7 +163,6 @@ export default function TabBody({
       <td className="py-1 px-1">
         <div className="flex flex-col ">
           <div className="flex flex-row ">
-            <span className=" w-8">.</span> / R / N
           </div>
           {r?.AEPendingDesigner && (
             <div className="flex  items-center    ">
@@ -197,7 +192,6 @@ export default function TabBody({
       <td className="py-1 px-1">
         <div className="flex flex-col ">
           <div className="flex flex-row ">
-            <span className=" w-8">.</span> / R / N
           </div>
           {r?.RotoPendingDesigner && (
             <div className="flex  items-center    ">
@@ -231,7 +225,6 @@ export default function TabBody({
       <td className="py-1 px-1">
         <div className="flex flex-col ">
           <div className="flex flex-row ">
-            <span className=" w-8">.</span> / R / N
           </div>
           {r?.DemoPendingDesigner && (
             <div className="flex  items-center    ">
@@ -264,10 +257,7 @@ export default function TabBody({
       </td>
       <td className="py-1 px-1">
         <div className="flex flex-col ">
-          <div className="flex flex-row ">
-            <span className=" w-8">.</span> / R{" "}
-            <span className="mr-2 ml-2">-</span> N
-          </div>
+          
           {r?.CompPendingDesigner && (
             <div className="flex  items-center    ">
               <span className=" mr-1">DES</span>

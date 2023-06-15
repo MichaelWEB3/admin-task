@@ -15,9 +15,29 @@ export default async function GetUsers(req, res) {
         'X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version'
     )
     if (req.method == 'GET') {
+        // Obtenha uma referência para o banco de dados
+
+        // Defina a data inicial e final para os últimos sete dias
+        const dataFinal = new Date();
+        const dataInicial = new Date();
+        dataInicial.setDate(dataInicial.getDate() - 7);
+        console.log(dataFinal)
+        // Converta as datas para o formato adequado para consulta no Firebase
+        // Formate as datas para o formato "aaaa-mm-dd"
+        const dataFinalFormatada = formatarData(dataFinal);
+        const dataInicialFormatada = formatarData(dataInicial);
+
+        // Função para formatar a data no formato "aaaa-mm-dd"
+        function formatarData(data) {
+            const dia = String(data.getDate()).padStart(2, '0');
+            const mes = String(data.getMonth() + 1).padStart(2, '0');
+            const ano = data.getFullYear();
+            return `${ano}-${mes}-${dia}`;
+        }
+
 
         const movieRef = collection(db, "submitTask");
-        const q = query(movieRef, orderBy("STDirecot", "desc"),)
+        const q = query(movieRef, where('startDate', '>=', dataInicialFormatada), where('startDate', '<=', dataFinalFormatada))
         const docSnap = await getDocs(q);
         let list = []
         if (docSnap) {

@@ -9,7 +9,7 @@ export default function Menu({ propSelect }) {
   return (
     <nav className="w-full bg-gray-700 h-20 text-gray-50     font-medium  p-5">
       <ul className="w-full  flex  justify-around  items-center h-full ">
-        <li className="w-1/12">
+        <li className="w-auto">
           <span
             onClick={() => {
               Router.push("/home");
@@ -22,12 +22,38 @@ export default function Menu({ propSelect }) {
             Todo List
           </span>
         </li>
+        <li className="w-auto">
+          <span
+            onClick={() => {
+              Router.push("/hold");
+              setseleck("hold");
+            }}
+            className={`${
+              seleck == "hold" && "border-b border-gray-50"
+            }  cursor-pointer hover:text-lg transition  duration-300`}
+          >
+           Hold
+          </span>
+        </li>
+        <li className="w-auto">
+          <span
+            onClick={() => {
+              Router.push("/finish");
+              setseleck("finish");
+            }}
+            className={`${
+              seleck == "finish" && "border-b border-gray-50"
+            }  cursor-pointer hover:text-lg transition  duration-300`}
+          >
+            Finish
+          </span>
+        </li>
         <li
           onClick={() => {
             setseleck("createAcess");
             Router.push("/createAcess");
           }}
-          className="w-1/12"
+          className="w-auto"
         >
           <span
             className={`${
@@ -37,7 +63,7 @@ export default function Menu({ propSelect }) {
             Creates acess
           </span>
         </li>
-        <li className="w-1/12">
+        <li className="w-auto">
           <span
             onClick={() => {
               setseleck("projectsinfo");
@@ -51,7 +77,7 @@ export default function Menu({ propSelect }) {
             Directors Assignments
           </span>
         </li>
-        <li className="w-1/12">
+        <li className="w-auto">
           <span
             onClick={() => {
               setseleck("users");

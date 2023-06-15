@@ -4,7 +4,7 @@ import { Table } from "@nextui-org/react";
 import axios from "axios";
 import TabBody from "../../components/tabbody";
 
-export default function Home() {
+export default function Finish() {
   const [meusProjects, setmeusProjects] = useState(null);
   const GetMyProjects = async () => {
     await axios
@@ -107,37 +107,12 @@ export default function Home() {
               </th>
             </tr>
           </thead>
-          <div className="w-full h-5 justify-end flex bg-purple-700 text-gray-50  text-xs" >
-            Ani 1
-          </div>
-          <tbody>
 
+          <tbody>
             {meusProjects?.map((r, i) => {
               return <TabBody r={r} key={i} />;
             })}
           </tbody>
-          <div className="w-full h-5 justify-end flex bg-purple-300 text-gray-500  text-xs" >
-            Ani 1.5
-          </div>
-          <div className="w-full h-5 justify-end flex bg-pink-300 text-gray-500  text-xs" >
-            Ani 2
-          </div>
-
-          <div className="w-full h-5 justify-end flex bg-green-700 text-gray-50  text-xs" >
-            Art 1
-          </div>
-          <tbody>
-
-            {meusProjects?.map((r, i) => {
-              return <TabBody r={r} key={i} />;
-            })}
-          </tbody>
-          <div className="w-full h-5 justify-end flex bg-green-500 text-gray-500  text-xs" >
-            Art 1.5
-          </div>
-          <div className="w-full h-5 justify-end flex bg-green-300 text-gray-500  text-xs" >
-            Art 2
-          </div>
         </table>
       </div>
     </section>

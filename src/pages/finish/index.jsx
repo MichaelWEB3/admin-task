@@ -8,7 +8,7 @@ export default function Finish() {
   const [meusProjects, setmeusProjects] = useState(null);
   const GetMyProjects = async () => {
     await axios
-      .get(`/api/getsubmitTask`)
+      .get(`/api/getsubmitTask/finish`)
       .then((resp) => {
         console.log(resp);
         setmeusProjects(resp.data.list);
@@ -22,7 +22,7 @@ export default function Finish() {
   }, []);
   return (
     <section className="w-full bg-gray-200">
-      <Menu propSelect={"home"} />
+      <Menu propSelect={"finish"} />
       <div className="w-full h-screen  bg-gray-200">
         <table className="w-full textFormat  bg-gray-800 text-left text-gray-500 text-gray-400 ">
           <thead className=" thead-fixed uppercase  font-bold text-gray-400">

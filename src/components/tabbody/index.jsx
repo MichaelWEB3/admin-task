@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { Modal, Button, Image, Text, Link } from "@nextui-org/react";
 
 export default function TabBody({
   r,
@@ -7,13 +8,21 @@ export default function TabBody({
   setCalendarChecl,
   calendarCehck,
   setCalendar,
+  GetMyProjects,
 }) {
   const [movie, setMovie] = useState(null);
+  const [otpion, setotpion] = useState("");
   function stringFormat(string) {
     if (string) {
       return string.split("-").slice(0, 1).join("-");
     }
   }
+  const [visible, setVisible] = useState(false);
+  const handler = () => setVisible(true);
+  const closeHandler = () => {
+    setVisible(false);
+    console.log("closed");
+  };
   useEffect(() => {
     getOneMovie(r.uidMovie);
   }, []);
@@ -30,6 +39,22 @@ export default function TabBody({
         });
     }
   };
+  const edit = async (id) => {
+    console.log(otpion)
+    if (id) {
+      return await axios
+        .put(`/api/movie/oneMovieStatus/${id}`, {
+          status: otpion,
+        })
+        .then((resp) => {
+          closeHandler();
+          GetMyProjects();
+        })
+        .catch((e) => {
+          alert("error requisition");
+        });
+    }
+  };
 
   return (
     <tr
@@ -38,6 +63,36 @@ export default function TabBody({
       }}
       className=" transparent textmeno border-b-2  border-white cursor-pointer   m-2 bg-gray-800 hover:bg-gray-900  "
     >
+      <Modal noPadding open={visible} onClose={closeHandler}>
+        <Modal.Header
+          css={{ position: "absolute", zIndex: "$1", top: 5, right: 8 }}
+        >
+          <Text color="#363449">Select status</Text>
+        </Modal.Header>
+        <Modal.Body>
+          <div className="w-full flex flex-col h-full p-5">
+            <span>Select option</span>
+            <select
+              value={otpion}
+              onChange={(e) => setotpion(e.target.value)}
+              name=""
+              id=""
+              className="mb-5 p-2"
+            >
+              <option value="">Ok</option>
+              <option value="hold">Hold</option>
+              <option value="finish">Finish</option>
+            </select>
+            <Button
+              onClick={() => {
+                edit(r.id);
+              }}
+            >
+              save
+            </Button>
+          </div>
+        </Modal.Body>
+      </Modal>
       <th scope="row" className="py-1 px-1 ">
         <div className="w-full flex justify-start items-center">
           <span className="text-green-400"> {movie?.Product}</span>
@@ -70,8 +125,7 @@ export default function TabBody({
       </td>
       <td className="py-1 px-1 ">
         <div className="flex-col   ">
-          <div className="flex flex-row ">
-          </div>
+          <div className="flex flex-row "></div>
           {r?.DPendingDesigner && (
             <div className="flex items-center   ">
               <span className=" mr-1">DES</span>
@@ -96,7 +150,6 @@ export default function TabBody({
       </td>
       <td className="py- px-1">
         <div className="flex flex-col ">
-         
           {r?.ModelsPendingDesigner && (
             <div className="flex items-center     ">
               <span className=" mr-1">DES</span>
@@ -128,8 +181,7 @@ export default function TabBody({
       </td>
       <td className="py-1 px-1">
         <div className="flex flex-col ">
-          <div className="flex flex-row ">
-          </div>
+          <div className="flex flex-row "></div>
           {r?.AnimPendingDesigner && (
             <div className="flex items-center    ">
               <span className=" mr-1">DE</span>
@@ -162,8 +214,7 @@ export default function TabBody({
       </td>
       <td className="py-1 px-1">
         <div className="flex flex-col ">
-          <div className="flex flex-row ">
-          </div>
+          <div className="flex flex-row "></div>
           {r?.AEPendingDesigner && (
             <div className="flex  items-center    ">
               <span className=" mr-1">DES</span>
@@ -191,8 +242,7 @@ export default function TabBody({
       </td>
       <td className="py-1 px-1">
         <div className="flex flex-col ">
-          <div className="flex flex-row ">
-          </div>
+          <div className="flex flex-row "></div>
           {r?.RotoPendingDesigner && (
             <div className="flex  items-center    ">
               <span className=" mr-1">DES</span>
@@ -224,8 +274,7 @@ export default function TabBody({
       </td>
       <td className="py-1 px-1">
         <div className="flex flex-col ">
-          <div className="flex flex-row ">
-          </div>
+          <div className="flex flex-row "></div>
           {r?.DemoPendingDesigner && (
             <div className="flex  items-center    ">
               <span className=" mr-1">DES</span>
@@ -257,7 +306,6 @@ export default function TabBody({
       </td>
       <td className="py-1 px-1">
         <div className="flex flex-col ">
-          
           {r?.CompPendingDesigner && (
             <div className="flex  items-center    ">
               <span className=" mr-1">DES</span>

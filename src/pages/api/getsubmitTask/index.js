@@ -37,7 +37,7 @@ export default async function GetUsers(req, res) {
 
 
         const movieRef = collection(db, "submitTask");
-        const q = query(movieRef, where('startDate', '>=', dataInicialFormatada), where('startDate', '<=', dataFinalFormatada))
+        const q = query(movieRef, where('startDate', '>=', dataInicialFormatada), where('startDate', '<=', dataFinalFormatada), where('status', '==', ""))
         const docSnap = await getDocs(q);
         let list = []
         if (docSnap) {

@@ -15,8 +15,6 @@ export default async function GetUsers(req, res) {
         'X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version'
     )
     if (req.method == 'GET') {
-
-
         const movieRef = collection(db, "submitTask");
         const q = query(movieRef, where('status', '==', "hold"))
         const docSnap = await getDocs(q);

@@ -10,7 +10,6 @@ export default function Home() {
     await axios
       .get(`/api/getsubmitTask`)
       .then((resp) => {
-        console.log(resp);
         setmeusProjects(resp.data.list);
       })
       .catch((e) => {
@@ -24,6 +23,9 @@ export default function Home() {
     <section className="w-full bg-gray-200">
       <Menu propSelect={"home"} />
       <div className="w-full h-screen  bg-gray-200">
+        <div className="w-full h-5 justify-end flex bg-purple-700 text-gray-50  text-xs">
+          Ani 1
+        </div>
         <table className="w-full textFormat  bg-gray-800 text-left text-gray-500 text-gray-400 ">
           <thead className=" thead-fixed uppercase  font-bold text-gray-400">
             <tr>
@@ -107,38 +109,30 @@ export default function Home() {
               </th>
             </tr>
           </thead>
-          <div className="w-full h-5 justify-end flex bg-purple-700 text-gray-50  text-xs" >
-            Ani 1
-          </div>
-          <tbody>
 
+          <tbody>
             {meusProjects?.map((r, i) => {
-              return <TabBody r={r} key={i} />;
+              return <TabBody GetMyProjects={GetMyProjects} r={r} key={i} />;
             })}
           </tbody>
-          <div className="w-full h-5 justify-end flex bg-purple-300 text-gray-500  text-xs" >
-            Ani 1.5
-          </div>
-          <div className="w-full h-5 justify-end flex bg-pink-300 text-gray-500  text-xs" >
-            Ani 2
-          </div>
-
-          <div className="w-full h-5 justify-end flex bg-green-700 text-gray-50  text-xs" >
-            Art 1
-          </div>
-          <tbody>
-
-            {meusProjects?.map((r, i) => {
-              return <TabBody r={r} key={i} />;
-            })}
-          </tbody>
-          <div className="w-full h-5 justify-end flex bg-green-500 text-gray-500  text-xs" >
-            Art 1.5
-          </div>
-          <div className="w-full h-5 justify-end flex bg-green-300 text-gray-500  text-xs" >
-            Art 2
-          </div>
         </table>
+
+        <div className="w-full h-5 justify-end flex bg-purple-300 text-gray-500  text-xs">
+          Ani 1.5
+        </div>
+        <div className="w-full h-5 justify-end flex bg-pink-300 text-gray-500  text-xs">
+          Ani 2
+        </div>
+
+        <div className="w-full h-5 justify-end flex bg-green-700 text-gray-50  text-xs">
+          Art 1
+        </div>
+        <div className="w-full h-5 justify-end flex bg-green-500 text-gray-500  text-xs">
+          Art 1.5
+        </div>
+        <div className="w-full h-5 justify-end flex bg-green-300 text-gray-500  text-xs">
+          Art 2
+        </div>
       </div>
     </section>
   );

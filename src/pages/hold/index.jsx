@@ -110,7 +110,7 @@ export default function Hold() {
 
           <tbody>
             {meusProjects?.map((r, i) => {
-              return <TabBody r={r} key={i} />;
+              return <TabBody GetMyProjects={GetMyProjects} r={r} key={i} />;
             })}
           </tbody>
         </table>

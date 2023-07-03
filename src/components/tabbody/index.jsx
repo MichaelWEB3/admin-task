@@ -17,6 +17,7 @@ export default function TabBody({
       return string.split("-").slice(0, 1).join("-");
     }
   }
+  
   const [visible, setVisible] = useState(false);
   const handler = () => setVisible(true);
   const closeHandler = () => {

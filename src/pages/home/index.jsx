@@ -1,15 +1,23 @@
 import React, { useEffect, useState } from "react";
 import Menu from "../../components/menu";
-import { Table } from "@nextui-org/react";
+import { Table, Button } from "@nextui-org/react";
 import axios from "axios";
 import TabBody from "../../components/tabbody";
 
 export default function Home() {
   const [meusProjects, setmeusProjects] = useState(null);
+  const [opmes, setopmes] = useState("");
+  const [opmes2, setopmes2] = useState("");
   const GetMyProjects = async () => {
     await axios
-      .get(`/api/getsubmitTask`)
+      .get(`/api/getsubmitTask`, {
+        params: {
+          opmes1: opmes,
+          opmes2: opmes2,
+        },
+      })
       .then((resp) => {
+        console.log(resp.data.list)
         setmeusProjects(resp.data.list);
       })
       .catch((e) => {
@@ -23,9 +31,32 @@ export default function Home() {
     <section className="w-full bg-gray-200">
       <Menu propSelect={"home"} />
       <div className="w-full h-screen  bg-gray-200">
+        <span className="m-2">Select filter date</span>
+        <div className="flex justify-start m-2 items-center">
+          <input
+            type="date"
+            value={opmes}
+            onChange={(e) => setopmes(e.target.value)}
+          />
+          -
+          <input
+            type="date"
+            value={opmes2}
+            onChange={(e) => setopmes2(e.target.value)}
+          />
+          <Button
+            className="w-20 h-20 mr-5 ml-5"
+            onClick={() => {
+              GetMyProjects();
+            }}
+          >
+            Filter
+          </Button>
+        </div>
         <div className="w-full h-5 justify-end flex bg-purple-700 text-gray-50  text-xs">
           Ani 1
         </div>
+
         <table className="w-full textFormat  bg-gray-800 text-left text-gray-500 text-gray-400 ">
           <thead className=" thead-fixed uppercase  font-bold text-gray-400">
             <tr>

@@ -16,17 +16,21 @@ export default async function GetUsers(req, res) {
     )
     if (req.method == 'GET') {
         // Obtenha uma referência para o banco de dados
+        const { opmes1, opmes2 } = req.query
 
         // Defina a data inicial e final para os últimos sete dias
-        const dataFinal = new Date();
-        const dataInicial = new Date();
-        dataInicial.setDate(dataInicial.getDate() - 7);
-        console.log(dataFinal)
+        const dataFinal = opmes2 ? new Date(opmes2) : new Date()
+        const dataInicial = opmes1 ? new Date(opmes1) : new Date()
+        if (!opmes1) {
+            dataInicial.setDate(dataInicial.getDate() - 7);
+        }
+
         // Converta as datas para o formato adequado para consulta no Firebase
         // Formate as datas para o formato "aaaa-mm-dd"
         const dataFinalFormatada = formatarData(dataFinal);
         const dataInicialFormatada = formatarData(dataInicial);
-
+        console.log(dataFinalFormatada)
+        console.log(dataInicialFormatada)
         // Função para formatar a data no formato "aaaa-mm-dd"
         function formatarData(data) {
             const dia = String(data.getDate()).padStart(2, '0');

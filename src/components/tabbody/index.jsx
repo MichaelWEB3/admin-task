@@ -17,7 +17,7 @@ export default function TabBody({
       return string.split("-").slice(0, 1).join("-");
     }
   }
-  
+
   const [visible, setVisible] = useState(false);
   const handler = () => setVisible(true);
   const closeHandler = () => {
@@ -41,7 +41,6 @@ export default function TabBody({
     }
   };
   const edit = async (id) => {
-    console.log(otpion)
     if (id) {
       return await axios
         .put(`/api/movie/oneMovieStatus/${id}`, {
@@ -50,6 +49,7 @@ export default function TabBody({
         .then((resp) => {
           closeHandler();
           GetMyProjects();
+          window.location.reload();
         })
         .catch((e) => {
           alert("error requisition");

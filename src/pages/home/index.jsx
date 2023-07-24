@@ -11,6 +11,12 @@ export default function Home() {
   const [aniamanha, setaniamanha] = useState([]);
   const [semani, setsemani] = useState([]);
   const [nenhumnemoutro, setnenhumnemoutro] = useState([]);
+
+
+  const [artmanha, setartmanha] = useState([]);
+  const [semart, setsemart] = useState([]);
+  const [nenhumart setnenhumart] = useState([]);
+
   const GetMyProjects = async () => {
     setaniamanha([]);
     setsemani([]);
@@ -50,7 +56,58 @@ export default function Home() {
         tomorrow.setDate(tomorrow.getDate() + 1); // define a data de amanhã
         for (let i = 0; i < jsontras.length; i++) {
           console.log(jsontras[i]);
-          if (jsontras[i].Tags == 5 || jsontras[i].Tags == 7) {
+          if (jsontras[i].Tags == 5) {
+            const date = new Date(jsontras[i].startDate);
+            if (
+              date.getDate() === tomorrow.getDate() &&
+              date.getMonth() === tomorrow.getMonth() &&
+              date.getFullYear() === tomorrow.getFullYear()
+            ) {
+              return true; // há entrega amanhã
+            } else {
+              return false;
+            }
+          } else {
+            return "roi";
+          }
+        }
+      };
+
+      if (temEntrega(jsontras) === "roi") {
+        let arr = [];
+        arr.push(...nenhumart, dates);
+        setnenhumart(arr);
+      }
+
+      if (temEntrega(jsontras) === true) {
+        let arr2 = [];
+        arr2.push(...artmanha, dates);
+
+        setartmanha(arr2);
+      }
+
+      if (temEntrega(jsontras) === false) {
+        let arr3 = [];
+        arr3.push(...semart, dates);
+        setsemart(arr3);
+      }
+    }
+  }
+
+  async function veryf2(dates) {
+    if (!dates?.datas) {
+    } else {
+      let jsontras = await JSON.parse(dates?.datas);
+      console.log(jsontras);
+      const dataAmanha = new Date();
+      dataAmanha.setDate(dataAmanha.getDate() + 1);
+
+      let temEntrega = function hasDeliveryTomorrow(jsontras) {
+        const tomorrow = new Date();
+        tomorrow.setDate(tomorrow.getDate() + 1); // define a data de amanhã
+        for (let i = 0; i < jsontras.length; i++) {
+          console.log(jsontras[i]);
+          if (jsontras[i].Tags == 7) {
             const date = new Date(jsontras[i].startDate);
             if (
               date.getDate() === tomorrow.getDate() &&
@@ -87,8 +144,6 @@ export default function Home() {
       }
     }
   }
-
-
   return (
     <section className="w-full bg-gray-200">
       <Menu propSelect={"home"} />

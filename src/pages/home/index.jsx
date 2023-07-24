@@ -15,7 +15,7 @@ export default function Home() {
 
   const [artmanha, setartmanha] = useState([]);
   const [semart, setsemart] = useState([]);
-  const [nenhumart setnenhumart] = useState([]);
+  const [nenhumart,setnenhumart] = useState([]);
 
   const GetMyProjects = async () => {
     setaniamanha([]);
@@ -76,7 +76,7 @@ export default function Home() {
       if (temEntrega(jsontras) === "roi") {
         let arr = [];
         arr.push(...nenhumart, dates);
-        setnenhumart(arr);
+        ,(arr);
       }
 
       if (temEntrega(jsontras) === true) {

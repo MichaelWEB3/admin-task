@@ -76,7 +76,7 @@ export default function Home() {
       if (temEntrega(jsontras) === "roi") {
         let arr = [];
         arr.push(...nenhumart, dates);
-        ,(arr);
+        setnenhumart(arr);
       }
 
       if (temEntrega(jsontras) === true) {
